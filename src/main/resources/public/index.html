@@ -4,16 +4,27 @@
     <title>Form Example</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-<!-- Contenido principal -->
-<h1>Login</h1>
-<form action="/login">
-    <label for="user">Usuario:</label><br>
-    <input type="text" id="user" ><br><br>
-    <label for="password">Contraseña:</label><br>
-    <input type="password" id="password" ><br><br>
-    <input type="button" value="Submit" onclick="login()">
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form>
+    <h3>Login Here</h3>
+
+    <label for="username">Username</label>
+    <input type="text" placeholder="Email or Phone" id="user">
+
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password">
+
+    <button>Log In</button>
+    <div class="social">
+        <div class="go"><i class="fab fa-google"></i>  Google</div>
+        <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+    </div>
 </form>
 <div id="divlogin"></div>
 
