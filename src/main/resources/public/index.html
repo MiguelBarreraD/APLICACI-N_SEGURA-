@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!-- Contenido principal -->
+<h1>Login</h1>
+<form action="/login">
+    <label for="user">Usuario:</label><br>
+    <input type="text" id="user" ><br><br>
+    <label for="password">Contraseña:</label><br>
+    <input type="password" id="password" ><br><br>
+    <input type="button" value="Submit" onclick="login()">
+</form>
+<div id="divlogin"></div>
+
+
+<script>
+
+    function login() {
+  let userName = document.getElementById("user").value;
+  let password = document.getElementById("password").value;
+
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function() {
+    document.getElementById("divlogin").innerHTML = this.responseText;
+  }
+  xhttp.open("GET", `/login?username=${userName}&password=${password}`);
+  xhttp.send();
+}
+</script>
+</body>
+</html>

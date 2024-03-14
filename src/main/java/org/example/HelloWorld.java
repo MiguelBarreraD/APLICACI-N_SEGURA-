@@ -1,14 +1,25 @@
 package org.example;
 
+import org.example.Authentication.AuthenticationService;
+
 import static spark.Spark.*;
 public class HelloWorld {
-    public static void main(String[] args) {
 
+    private static AuthenticationService authenticationService = new AuthenticationService();
+    public static void main(String[] args) {
+        staticFiles.location("/public");
         port(getPort());
 
         //API: secure(keystoreFilePath, keystorePassword, truststoreFilePath,truststorePassword);
         secure("certificados/ecikeystore.p12", "123456", null, null);
+
         get("/hello", (req, res) -> "Hello World");
+
+        get("/login", (req, res) -> {
+            String user = req.queryParams("username");
+            String password = req.queryParams("password");
+            return authenticationService.authenticate(user, password);
+        });
     }
 
 

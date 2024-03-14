@@ -19,7 +19,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
+        <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
@@ -30,6 +30,7 @@
       <artifactId>spark-core</artifactId>
       <version>2.9.4</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
     <dependency>
       <groupId>org.slf4j</groupId>
