@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Form Example</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-<div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-</div>
-<form>
-    <h3>Login Here</h3>
 
+<head>
+  <title>Form Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <form onsubmit="login(event)">
+    <h3>Login Here</h3>
     <label for="username">Username</label>
     <input type="text" placeholder="Email or Phone" id="user">
-
     <label for="password">Password</label>
     <input type="password" placeholder="Password" id="password">
+    <button type="submit">Log In</button>
+    <div id="response"></div>
+  </form>
+  
 
-    <button>Log In</button>
-    <div class="social">
-        <div class="go"><i class="fab fa-google"></i>  Google</div>
-        <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-    </div>
-</form>
-<div id="divlogin"></div>
+  <script>
 
-
-<script>
-
-    function login() {
-  let userName = document.getElementById("user").value;
-  let password = document.getElementById("password").value;
-
-  const xhttp = new XMLHttpRequest();
-
-  xhttp.onload = function() {
-    document.getElementById("divlogin").innerHTML = this.responseText;
-  }
-  xhttp.open("GET", `/login?username=${userName}&password=${password}`);
-  xhttp.send();
-}
-</script>
+    function login(event) {
+      event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
+    
+      let userName = document.getElementById("user").value;
+      let password = document.getElementById("password").value;
+      const xhttp = new XMLHttpRequest();
+    
+      xhttp.onload = function () {
+        if (this.status === 200) {
+          const blob = new Blob([this.response], { type: "image/png" });
+          const blobUrl = URL.createObjectURL(blob);
+          document.getElementById("response").innerHTML = `<img src="${blobUrl}" alt="QR Code">`;
+        } else if (this.status === 401) {
+          document.getElementById("response").innerHTML = "Usuario o contraseña incorrecto.";
+        } else {
+          document.getElementById("response").innerHTML = "Error de servidor: " + this.status;
+        }
+      }
+    
+      console.log("Enviando solicitud al servidor:", `/login?username=${userName}&password=${password}`);
+      xhttp.open("GET", `/login?username=${userName}&password=${password}`);
+      xhttp.responseType = "arraybuffer";
+      xhttp.send();
+    }
+  </script>
 </body>
+
 </html>
