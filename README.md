@@ -6,6 +6,8 @@ La aplicación es un sistema basado en web que ofrece acceso seguro a través de
 
 ## Demostración en AWS
 
+
+
 ## Requisitos
 
     1. git - Control de versiones
@@ -43,6 +45,18 @@ Ya puede usar la aplicación:
 
 ![](img/FotoInicio.png)
 
+Usuarios con los que puede probar
+
+Usuario | Contraseña
+--------|------------
+user1   |   password1
+user2   | password2
+user3   | password3
+
+
+Si la autenticación es exitosa este le mostrará un QR, de lo contrario no
+
+![](img/Prueba.png)
 
 ## Arquitecura de la aplicación
 

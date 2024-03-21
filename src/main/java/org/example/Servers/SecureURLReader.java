@@ -26,7 +26,7 @@ public class SecureURLReader {
         try {
             // Create a file and a password representation
             File trustStoreFile = new File("certificados/myTrustStore.p12");
-            char[] trustStorePassword = "123456".toCharArray();
+            char[] trustStorePassword = "654321".toCharArray();
 
             // Load the trust store, the default type is "pkcs12", the alternative is "jks"
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -63,7 +63,7 @@ public class SecureURLReader {
                 logger.log(Level.SEVERE, "Error inesperado", ex);
             }
         }
-        return readURL("https://ec2-107-23-178-87.compute-1.amazonaws.com:4567/qrcode");
+        return readURL("https://localhost:4567/qrcode");
     }
 
     /**
